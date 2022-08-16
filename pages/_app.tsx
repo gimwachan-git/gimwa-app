@@ -9,6 +9,7 @@ import { Transition } from "components/Layout/Transition";
 import { Header } from 'components/Layout/Header';
 import { Loading } from 'components/Loading';
 import { Logo } from 'components/Logo';
+import { motion } from "framer-motion";
 
 // Router.onRouteChangeStart = () => NProgress.start();
 // Router.onRouteChangeComplete = () => NProgress.done();
@@ -19,9 +20,9 @@ function GimwaApp({ Component, pageProps, router }: AppProps) {
   // console.log(router.pathname);
   return (
     <main>
-      {router.pathname=="/" && (
+      {/* {router.pathname=="/" && ( */}
         <Loading router={router} />
-      )}
+      {/* )} */}
       <Logo />
       <Header />
       <Transition location={router.pathname}>

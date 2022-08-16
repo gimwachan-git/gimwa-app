@@ -5,32 +5,43 @@ import {
     Loadingtext
 } from "components/Loading/styles";
 import { motion,AnimatePresence } from "framer-motion";
+import React, {useLayoutEffect,useState} from 'react';
 import { useRouter } from "next/router";
 import { variants } from "components/Loading/styles";
 
 export const Loading = ({router}:{router:any}) => {
-    const { asPath } = useRouter();
+    const [loaded, setLoaded] = useState(false);
+    useLayoutEffect(() => {
+      setLoaded(true);
+      setTimeout(() => {
+        setLoaded(true);
+      }, 0);
+    }, []);
+  
     return(
-        <AnimatePresence>
-          <motion.section
-            key={asPath}
-            variants={variants}
-            initial="inactive"
-            animate="fadeIn"
-            exit="fadeOut"
-            style={{
-                position: "fixed",
-                width: "100vw",
-                height: "100vh",
-                top: 0,
-                left: 0,
-                background: "#FFF",
-                zIndex: 99,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-          >
+        <motion.section
+        animate={{
+          y: loaded ? "-100%" : 0,
+          transition: {
+            duration: .55,
+            ease: "easeIn",
+            delay: .5,  
+          }    
+        }}
+          style={{
+              position: "fixed",
+              width: "100vw",
+              height: "100vh",
+              top: 0,
+              left: 0,
+              background: "#FFF",
+              zIndex: 99,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+          }}
+        >
+      
                 <Loadingcontainer>
                     <Loadinglogo width="100%" height="100%" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M110 215C167.99 215 215 167.99 215 110C215 52.0101 167.99 5 110 5C52.0101 5 5 52.0101 5 110C5 167.99 52.0101 215 110 215Z" stroke="#333333" strokeWidth="10" strokeMiterlimit="10"/>
@@ -55,7 +66,6 @@ export const Loading = ({router}:{router:any}) => {
                     <Loadingtext>LOADING...</Loadingtext>
                 </Loadingcontainer>
             </motion.section>
-        </AnimatePresence>
 
     )
 }
