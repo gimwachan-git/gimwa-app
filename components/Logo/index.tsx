@@ -19,7 +19,7 @@ export const Logo = () => {
       let timer:any;
 
       function start() {
-          setProgress(580);
+          setProgress(480);
           increment();
           // NProgress.start();
       }
@@ -34,7 +34,7 @@ export const Logo = () => {
                   return next;
               }
 
-              return 502;
+              return 302;
           });
       }
 
