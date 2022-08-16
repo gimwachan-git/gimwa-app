@@ -34,3 +34,12 @@ export const LogoContainer = styled.div`
         left: 0;
     }
 `
+export const Logomask = styled.section`
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background: #FFF;
+    z-index: 90;
+`;

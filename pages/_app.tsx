@@ -8,6 +8,7 @@ import Router, { withRouter , useRouter } from 'next/router';
 import { Transition } from "components/Layout/Transition";
 import { Header } from 'components/Layout/Header';
 import { Loading } from 'components/Loading';
+import { Logo } from 'components/Logo';
 
 // Router.onRouteChangeStart = () => NProgress.start();
 // Router.onRouteChangeComplete = () => NProgress.done();
@@ -15,10 +16,13 @@ import { Loading } from 'components/Loading';
 
 
 function GimwaApp({ Component, pageProps, router }: AppProps) {
-
+  // console.log(router.pathname);
   return (
     <main>
-      <Loading router={router} />
+      {router.pathname=="/" && (
+        <Loading router={router} />
+      )}
+      <Logo />
       <Header />
       <Transition location={router.pathname}>
         <Component {...pageProps} />
