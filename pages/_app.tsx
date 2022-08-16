@@ -1,21 +1,30 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ThemeProvider } from "next-themes";
-import router from "next/router";
+import '../styles/destyle.min.css'
 import "styles/nprogress.css";
+import type { AppProps } from 'next/app'
+import React, {useEffect,useState} from 'react';
+import NProgress from 'nprogress';
+import Router, { withRouter , useRouter } from 'next/router';
 import { Transition } from "components/Layout/Transition";
+import { Header } from 'components/Layout/Header';
+import { Loading } from 'components/Loading';
 
-function MyApp({ Component, pageProps,router }: AppProps) {
-  // console.log(pageProps);
-  // const [location, setLocation] = useLocation();
+// Router.onRouteChangeStart = () => NProgress.start();
+// Router.onRouteChangeComplete = () => NProgress.done();
+// Router.onRouteChangeError = () => NProgress.done();
+
+
+function GimwaApp({ Component, pageProps, router }: AppProps) {
 
   return (
-    <ThemeProvider>
+    <main>
+      <Loading router={router} />
+      <Header />
       <Transition location={router.pathname}>
         <Component {...pageProps} />
       </Transition>
-    </ThemeProvider>
+    </main>
   )
 }
 
-export default MyApp
+export default GimwaApp

@@ -1,27 +1,29 @@
-import { TransitionGroup } from "react-transition-group";
-import styled from "styled-components";
-
-const TIMEOUT: string = "250ms";
-
-export const transitionStyles = {
-  entering: {
-    position: `absolute`,
-    opacity: 0,
-    transform: `translateX(50px)`,
-  },
-  entered: {
-    transition: `opacity ${TIMEOUT} ease, transform ${TIMEOUT} ease`,
+export const variants = {
+  fadeIn: {
     opacity: 1,
-    transform: `translateX(0px)`,
-    animation: "blink .3s linear 2",
-  },
-  exiting: {
-    transition: `opacity ${TIMEOUT} ease, transform ${TIMEOUT} ease`,
-    opacity: 0,
-    transform: `translateX(-50px)`,
-  },
-} as any;
+    x: 0,
+    transition: {
+      duration: .25,
+      ease: "linear",
+      delay: .15,
 
-export const StyledTransitionGroup = styled(TransitionGroup)`
-  position: relative;
-`;
+    }
+  },
+  inactive: {
+    x: 50,
+    opacity: 0,
+    transition: {
+      duration: .25,
+      ease: "easeIn",
+
+    }
+  },
+  fadeOut: {
+    opacity: 0,
+    x: -50,
+    transition: {
+      duration: .2,
+      ease: "easeOut"
+    }
+  }
+} as any;
