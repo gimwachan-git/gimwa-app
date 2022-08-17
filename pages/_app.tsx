@@ -19,16 +19,18 @@ import { motion } from "framer-motion";
 function GimwaApp({ Component, pageProps, router }: AppProps) {
   // console.log(router.pathname);
   return (
+    <>
+    {/* {router.pathname=="/" && ( */}
+    <Loading router={router} />
+    {/* )} */}
+    <Logo />
+    <Header />
     <main>
-      {/* {router.pathname=="/" && ( */}
-        <Loading router={router} />
-      {/* )} */}
-      <Logo />
-      <Header />
       <Transition location={router.pathname}>
         <Component {...pageProps} />
       </Transition>
     </main>
+    </>
   )
 }
 

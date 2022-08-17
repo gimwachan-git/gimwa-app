@@ -5,18 +5,18 @@ import {
     Loadingtext
 } from "components/Loading/styles";
 import { motion,AnimatePresence } from "framer-motion";
-import React, {useLayoutEffect,useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import { useRouter } from "next/router";
 import { variants } from "components/Loading/styles";
 
 export const Loading = ({router}:{router:any}) => {
     const [loaded, setLoaded] = useState(false);
-    useLayoutEffect(() => {
+    useEffect(() => {
       setLoaded(true);
       setTimeout(() => {
         setLoaded(true);
       }, 0);
-    }, []);
+    }, [loaded]);
   
     return(
         <motion.section

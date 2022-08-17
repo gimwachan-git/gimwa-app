@@ -12,36 +12,35 @@ import React, {useEffect,useState} from 'react';
 
 export const Logo = () => {
   const router = useRouter();
-  const [progress, setProgress] = useState(0);
   const pvalue = 628.319;
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-      let timer:any;
+      let speed = 1;
 
       function start() {
           setProgress(480);
-          increment();
           // NProgress.start();
+          timer;
       }
 
-      function increment() {
-          const timeout = Math.round(Math.random() * 300);
-
-          setProgress((progress) => {
-              const percent = 0.1;
-              const next = Math.max(pvalue-(pvalue*0.1), pvalue*0.02);
-              if (next > pvalue*0.02) {
-                  return next;
-              }
-
-              return 302;
-          });
+      let timer = function increment() {
+        setInterval(() => {
+        if (speed <= 90) {
+            speed += 1
+            setProgress((speed:number) => {
+            return pvalue*(1-speed*0.01)  
+            }); 
+        }
+        }, 10)
       }
 
-      function complete() {
-          clearTimeout(timer);
-          setProgress(0);
-          // NProgress.done();
+      function complete(timer: NodeJS.Timeout) {
+        clearInterval(timer)
+        setTimeout(() => {
+            setProgress(0);
+        }, 100)
+        // NProgress.done();
       }
 
       router.events.on('routeChangeStart', start);
@@ -49,12 +48,12 @@ export const Logo = () => {
       router.events.on('routeChangeError', complete);
 
       return () => {
-          clearTimeout(timer);
+          
           router.events.off('routeChangeStart',start);
           router.events.off('routeChangeComplete',complete);
           router.events.off('routeChangeError',complete);
       };
-  }, []);
+  }, [router]);
 
     return (
         <Logomask>
