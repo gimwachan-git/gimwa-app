@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-export const Loadingmask = styled.section`
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background: #FFF;
-    z-index: 99;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
 export const Loadinglogo = styled.svg`
     width: 30vw;
     height: auto;

@@ -3,17 +3,11 @@ import '../styles/destyle.min.css'
 import "styles/nprogress.css";
 import type { AppProps } from 'next/app'
 import React, {useEffect,useState} from 'react';
-import NProgress from 'nprogress';
-import Router, { withRouter , useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Transition } from "components/Layout/Transition";
 import { Header } from 'components/Layout/Header';
 import { Loading } from 'components/Loading';
 import { Logo } from 'components/Logo';
-import { motion } from "framer-motion";
-
-// Router.onRouteChangeStart = () => NProgress.start();
-// Router.onRouteChangeComplete = () => NProgress.done();
-// Router.onRouteChangeError = () => NProgress.done();
 
 
 const GimwaApp : React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -54,16 +48,16 @@ const GimwaApp : React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <>
-    {router.pathname=="/" && (
-    <Loading router={router} />
-    )}
-    <Logo isRouteChanging={state.isRouteChanging} key={state.loadingKey}  />
-    <Header />
-    <main>
-      <Transition location={router.pathname}>
-        <Component {...pageProps} />
-      </Transition>
-    </main>
+      {router.pathname=="/" && (
+      <Loading router={router} />
+      )}
+      <Logo isRouteChanging={state.isRouteChanging} key={state.loadingKey}  />
+      <Header />
+      <main>
+        <Transition location={router.pathname}>
+          <Component {...pageProps} />
+        </Transition>
+      </main>
     </>
   )
 }

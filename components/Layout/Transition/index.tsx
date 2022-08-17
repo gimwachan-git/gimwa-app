@@ -12,7 +12,6 @@ export const Transition = ({ children, location }: TransitionProps) => {
 
     return (
       <AnimatePresence initial={false} exitBeforeEnter>
-        {/* {isVisible && ( */}
           <motion.article
             key={asPath}
             variants={variants}
@@ -22,7 +21,6 @@ export const Transition = ({ children, location }: TransitionProps) => {
           >
             {children}
           </motion.article>
-        {/* )} */}
       </AnimatePresence>
 
     );

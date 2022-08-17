@@ -5,11 +5,8 @@ LogoCircle,
 LogoProgress,
 Logomask
 } from "components/Logo/styles";
-import Router, { withRouter , useRouter } from 'next/router';
-import React, {useEffect,useState} from 'react';
+import React from 'react';
 import { useNProgress } from '@tanem/react-nprogress'
-// import type { AppProps } from 'next/app'
-// // import NProgress from 'nprogress';
 
 export const Logo:React.FC<{ isRouteChanging: boolean }> = ({isRouteChanging}) => {
   const pvalue = 628.319;
