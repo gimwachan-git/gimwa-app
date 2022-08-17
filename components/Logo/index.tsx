@@ -16,8 +16,6 @@ export const Logo:React.FC<{ isRouteChanging: boolean }> = ({isRouteChanging}) =
   const { animationDuration, isFinished, progress } = useNProgress({
     isAnimating: isRouteChanging,
   })
-
- console.log(pvalue * (1 - + progress) );
     return (
         <Logomask>
             <LogoContainer>
