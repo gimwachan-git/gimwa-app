@@ -7,54 +7,17 @@ Logomask
 } from "components/Logo/styles";
 import Router, { withRouter , useRouter } from 'next/router';
 import React, {useEffect,useState} from 'react';
+import { useNProgress } from '@tanem/react-nprogress'
 // import type { AppProps } from 'next/app'
 // // import NProgress from 'nprogress';
 
-export const Logo = () => {
-  const router = useRouter();
+export const Logo:React.FC<{ isRouteChanging: boolean }> = ({isRouteChanging}) => {
   const pvalue = 628.319;
-  const [progress, setProgress] = useState(0);
+  const { animationDuration, isFinished, progress } = useNProgress({
+    isAnimating: isRouteChanging,
+  })
 
-  useEffect(() => {
-      let speed = 1;
-
-      function start() {
-          setProgress(480);
-          // NProgress.start();
-          timer;
-      }
-
-      let timer = function increment() {
-        setInterval(() => {
-        if (speed <= 90) {
-            speed += 1
-            setProgress((speed:number) => {
-            return pvalue*(1-speed*0.01)  
-            }); 
-        }
-        }, 10)
-      }
-
-      function complete(timer: NodeJS.Timeout) {
-        clearInterval(timer)
-        setTimeout(() => {
-            setProgress(0);
-        }, 100)
-        // NProgress.done();
-      }
-
-      router.events.on('routeChangeStart', start);
-      router.events.on('routeChangeComplete', complete);
-      router.events.on('routeChangeError', complete);
-
-      return () => {
-          
-          router.events.off('routeChangeStart',start);
-          router.events.off('routeChangeComplete',complete);
-          router.events.off('routeChangeError',complete);
-      };
-  }, [router]);
-
+ console.log(pvalue * (1 - + progress) );
     return (
         <Logomask>
             <LogoContainer>
@@ -81,8 +44,9 @@ export const Logo = () => {
                 <LogoProgress width="100%" height="100%" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <LogoCircle r="100" cx="50%" cy="50%"></LogoCircle>
                     <LogoCircleProgress r="100" cx="50%" cy="50%" style={{
-                        strokeDashoffset: `${progress}`,
-                        // transition: progress > 0 && progress < 628.319 ? ".3s" : "0s",
+                        strokeDashoffset: `${pvalue * (1 - + progress) }`,
+                        transition: `all ${animationDuration}ms linear`,
+                        opacity: `${isFinished ? 0 : 1}`,
                     }}></LogoCircleProgress>
                 </LogoProgress>
             </LogoContainer>
