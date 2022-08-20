@@ -4,11 +4,11 @@ import {
     Loadingtext
 } from "components/Loading/styles";
 import { motion } from "framer-motion";
-import React, {useLayoutEffect,useState} from 'react';
+import React, {useEffect,useState} from 'react';
 
 export const Loading = ({router}:{router:any}) => {
     const [loaded, setLoaded] = useState(false);
-    useLayoutEffect(() => {
+    useEffect(() => {
       setLoaded(true);
       setTimeout(() => {
         setLoaded(true);
